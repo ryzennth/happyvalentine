@@ -31,53 +31,55 @@
   </div>
 
   <!-- PAGE 2 -->
-  <div id="valentinePage" class="hidden text-center w-full max-w-md">
-    <h1 class="text-2xl sm:text-4xl font-bold text-white mb-8">
-      Will You Be My Valentine?
-    </h1>
+<div id="valentinePage" class="hidden text-center w-full max-w-md relative">
+  <h1 class="text-2xl sm:text-4xl font-bold text-white mb-12">
+    Will You Be My Valentine?
+  </h1>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
-      
-      <button onclick="yesClicked()"
-        class="px-6 py-3 bg-white text-pink-600 font-bold rounded-lg hover:scale-110 transition w-full sm:w-auto">
-        Yes
-      </button>
+  <button onclick="yesClicked()"
+    class="px-6 py-3 bg-white text-pink-600 font-bold rounded-lg hover:scale-110 transition">
+    Yes
+  </button>
 
-      <button id="noBtn"
-        onclick="moveButton()"
-        class="px-6 py-3 bg-pink-200 text-pink-800 font-bold rounded-lg runaway w-full sm:w-auto">
-        No
-      </button>
+  <button id="noBtn"
+    onmouseenter="moveButton()"
+    ontouchstart="moveButton()"
+    class="px-6 py-3 bg-pink-200 text-pink-800 font-bold rounded-lg fixed">
+    No
+  </button>
+</div>
 
-    </div>
-  </div>
 
   <script>
-    function searchHeart() {
-      document.getElementById("errorPage").classList.add("hidden");
-      document.getElementById("valentinePage").classList.remove("hidden");
-      document.getElementById("body").classList.remove("bg-white");
-      document.getElementById("body").classList.add("bg-pink-400");
-    }
+  function searchHeart() {
+    document.getElementById("errorPage").classList.add("hidden");
+    document.getElementById("valentinePage").classList.remove("hidden");
+    document.getElementById("body").classList.remove("bg-white");
+    document.getElementById("body").classList.add("bg-pink-400");
 
-    function moveButton() {
-      const button = document.getElementById("noBtn");
+    // kasih posisi awal random untuk tombol No
+    setTimeout(moveButton, 200);
+  }
 
-      const padding = 20;
-      const maxX = window.innerWidth - button.offsetWidth - padding;
-      const maxY = window.innerHeight - button.offsetHeight - padding;
+  function moveButton() {
+    const button = document.getElementById("noBtn");
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+    const padding = 20;
+    const maxX = window.innerWidth - button.offsetWidth - padding;
+    const maxY = window.innerHeight - button.offsetHeight - padding;
 
-      button.style.left = randomX + "px";
-      button.style.top = randomY + "px";
-    }
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
 
-    function yesClicked() {
-      window.location.href = "congrats.html";
-    }
-  </script>
+    button.style.left = randomX + "px";
+    button.style.top = randomY + "px";
+  }
+
+  function yesClicked() {
+    window.location.href = "congrats.html";
+  }
+</script>
+
 
 </body>
 </html>
