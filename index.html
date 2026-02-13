@@ -2,47 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 - Heart Not Found</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     .runaway {
-      position: absolute;
-      transition: all 0.2s ease;
+      position: fixed;
+      transition: all 0.25s ease;
     }
   </style>
 </head>
 
-<body id="body" class="bg-white h-screen flex items-center justify-center transition-all duration-700">
+<body id="body" class="bg-white min-h-screen flex items-center justify-center transition-all duration-700 px-6">
 
-  <!-- PAGE 1 : 404 MODE -->
-  <div id="errorPage" class="text-center">
-    <h1 class="text-6xl font-bold text-gray-800">404</h1>
-    <p class="text-gray-500 mt-2">Heart Not Found</p>
-    <p class="text-gray-400 mt-4">The love you are looking for does not exist.</p>
+  <!-- PAGE 1 -->
+  <div id="errorPage" class="text-center max-w-md">
+    <h1 class="text-7xl sm:text-8xl font-bold text-gray-800">404</h1>
+    <p class="text-gray-500 mt-2 text-lg">Heart Not Found</p>
+    <p class="text-gray-400 mt-4 text-sm sm:text-base">
+      The love you are looking for does not exist.
+    </p>
 
     <button onclick="searchHeart()"
-      class="mt-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition">
+      class="mt-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition w-full sm:w-auto">
       Search The Heart
     </button>
   </div>
 
-  <!-- PAGE 2 : CONFESSION MODE -->
-  <div id="valentinePage" class="hidden text-center">
-    <h1 class="text-4xl font-bold text-white mb-6">
-      Will You Be My Valentine? 
+  <!-- PAGE 2 -->
+  <div id="valentinePage" class="hidden text-center w-full max-w-md">
+    <h1 class="text-2xl sm:text-4xl font-bold text-white mb-8">
+      Will You Be My Valentine?
     </h1>
 
-    <div class="space-x-4">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
+      
       <button onclick="yesClicked()"
-        class="px-6 py-3 bg-white text-pink-600 font-bold rounded-lg hover:scale-110 transition">
+        class="px-6 py-3 bg-white text-pink-600 font-bold rounded-lg hover:scale-110 transition w-full sm:w-auto">
         Yes
       </button>
 
       <button id="noBtn"
-        onmouseover="moveButton()"
-        class="px-6 py-3 bg-pink-200 text-pink-800 font-bold rounded-lg runaway">
+        onclick="moveButton()"
+        class="px-6 py-3 bg-pink-200 text-pink-800 font-bold rounded-lg runaway w-full sm:w-auto">
         No
       </button>
+
     </div>
   </div>
 
@@ -56,10 +62,16 @@
 
     function moveButton() {
       const button = document.getElementById("noBtn");
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      button.style.left = x + "px";
-      button.style.top = y + "px";
+
+      const padding = 20;
+      const maxX = window.innerWidth - button.offsetWidth - padding;
+      const maxY = window.innerHeight - button.offsetHeight - padding;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      button.style.left = randomX + "px";
+      button.style.top = randomY + "px";
     }
 
     function yesClicked() {
